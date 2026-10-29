@@ -1,7 +1,7 @@
-# [Invictus.exe](https://github.com/patrickhener/Invictus)
+# [invictus](https://github.com/patrickhener/invictus)
 
 <!-- Summary -->
-This proof of concept (PoC) leverages a stack-based buffer overflow in Invictus to gain [remote code execution (RCE)](https://en.wikipedia.org/wiki/Arbitrary_code_execution). The PoC is mostly self-sufficient and only requires an external tool to host an anonymously accessible SMB share.
+This proof of concept (PoC) leverages a stack-based buffer overflow in invictus to gain [remote code execution (RCE)](https://en.wikipedia.org/wiki/Arbitrary_code_execution). The PoC is mostly self-sufficient and only requires an external tool to host an anonymously accessible SMB share.
 
 ![example](./assets/example.gif)
 
@@ -39,7 +39,7 @@ This proof of concept (PoC) leverages a stack-based buffer overflow in Invictus 
 ## Communicating with the Application
 <!-- How it reaches the generic functionalities -->
 
-Invictus will be listening on **TCP** port **1337**, where it awaits the following initialisation packet:
+invictus will be listening on **TCP** port **1337**, where it awaits the following initialisation packet:
 
 ```C
 struct packet {
@@ -63,7 +63,7 @@ struct packet {
   - `0x805`: `LOGS_DELETE`
 - `checksum` is a size-based checksum (see: <u>exploit.py:36</u>)
 
-After receiving the packet, Invictus listens once again and awaits the API arguments, which are null-byte-segmented. This interaction is demonstrated in pseudo-code below:
+After receiving the packet, invictus listens once again and awaits the API arguments, which are null-byte-segmented. This interaction is demonstrated in pseudo-code below:
 
 ```C
 send({0x5956475b, <?>, 32, FILE_WRITE, <?>})
@@ -148,7 +148,7 @@ To prevent overflowing `FILE_READ` when reading many dwords, we instead write to
 
 ```C
 send({0x5956475b, <?>, 128, FILE_WRITE, <?>})
-send("C:\\Windows\\Temp\\Invictus_log.txt\0" + "%p:"*0x100)
+send("C:\\Windows\\Temp\\invictus_log.txt\0" + "%p:"*0x100)
 
 send({0x5956475b, <?>, 128, LOGS_READ, <?>})
 send("\0") // ...0068c690:105a511e:03f0f4f0:7739e57a...
