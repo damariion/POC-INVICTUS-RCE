@@ -1,4 +1,4 @@
-# [invictus](https://github.com/patrickhener/invictus)
+# [POC-INVICTUS-RCE](https://github.com/patrickhener/invictus)
 
 <!-- Summary -->
 This proof of concept (PoC) leverages a stack-based buffer overflow in invictus to gain [remote code execution (RCE)](https://en.wikipedia.org/wiki/Arbitrary_code_execution). The PoC is mostly self-sufficient and only requires an external tool to host an anonymously accessible SMB share.
