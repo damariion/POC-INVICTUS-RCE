@@ -176,7 +176,7 @@ This API call then modifies the protection of the page that `esp` points to, cha
 ## Establishing an Interactive Shell
 <!-- How it establishes an interactive shell -->
 
-When stable ACE is reached, the shellcode acquires a handle to `kernel32.dll` which is used to resolve the following APIs through a custom implementation of `GetProcAddress`:
+When stable ACE is reached, the shellcode acquires a handle to `kernel32.dll` which is used to resolve the following APIs through a custom implementation of [`GetProcAddress`](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-getprocaddress):
 
 - `kernel32!LoadLibraryA`
 - `kernel32!CreateProcessA`
