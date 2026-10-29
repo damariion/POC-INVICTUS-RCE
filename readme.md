@@ -39,7 +39,7 @@ This proof of concept (PoC) leverages a stack-based buffer overflow in invictus 
 ## Communicating with the Application
 <!-- How it reaches the generic functionalities -->
 
-invictus will be listening on **TCP** port **1337**, where it awaits the following initialisation packet:
+Invictus will be listening on **TCP** port **1337**, where it awaits the following initialisation packet:
 
 ```C
 struct packet {
