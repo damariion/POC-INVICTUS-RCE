@@ -185,4 +185,4 @@ When stable ACE is reached, the shellcode acquires a handle to `kernel32.dll` wh
 - `ws2_32!socket`
 - `ws2_32!connect`
 
-Finally, it initialises a socket and connects to the host and port specified in `lhost` and `lport`, respectively. This socket is then used for the `hStdInput`, `hStdOutput` and `hStdError` members of the `lpStartupInfo` structure, which is in turn used to start an instance of `cmd.exe` through [`GetProcessA`](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessa).
+Finally, it initialises a socket and connects to the host and port specified in `lhost` and `lport`, respectively. This socket is then used for the `hStdInput`, `hStdOutput` and `hStdError` members of the `lpStartupInfo` structure, which is in turn used to start an instance of `cmd.exe` through [`CreateProcessA`](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessa).
